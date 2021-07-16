@@ -6,6 +6,10 @@ var date = document.getElementById("date");
 var insideMain = document.getElementById("inside-main");
 var refresh = document.getElementById("refresh");
 
+refresh.addEventListener("click", function () {
+  location.reload();
+});
+
 btnMore.addEventListener("click", function () {
   btnLess.style.display = "block";
   btnMore.style.display = "none";
