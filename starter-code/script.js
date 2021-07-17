@@ -14,9 +14,9 @@ btnMore.addEventListener("click", function () {
   btnLess.style.display = "block";
   btnMore.style.display = "none";
   content.style.display = "none";
-  date.style.marginTop = "100px";
+  date.style.marginTop = "20px";
   dateMore.classList.add("added-class");
-  btnLess.style.top = "43%";
+  btnLess.style.top = "30%";
 });
 
 btnLess.addEventListener("click", function () {
@@ -32,9 +32,9 @@ fetch("https://type.fit/api/quotes")
   .then((response) => response.json())
   .then((data) => {
     document.getElementById("quote").innerHTML +=
-      data[Math.floor(Math.random() * 100 + 1)].text;
+      data[Math.floor(Math.random() * 500 + 1)].text;
     document.getElementById("author").innerHTML +=
-      data[Math.floor(Math.random() * 100 + 1)].author;
+      data[Math.floor(Math.random() * 500 + 1)].author;
   });
 
 fetch("https://freegeoip.app/json/")
@@ -71,6 +71,19 @@ fetch("https://freegeoip.app/json/")
             "Good Evening, It's currently";
           document.getElementById("fa-moon").style.display = "inline-block";
           document.getElementById("fa-sun").style.display = "none";
+
+          dateMore.style.background = "#000"
+          dateMore.style.color = "#fff"
+          if (window.innerWidth < 768) {
+            document.getElementById("main").style.backgroundImage =
+              "url(./assets/mobile/bg-image-nighttime.jpg)";
+          } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
+            document.getElementById("main").style.backgroundImage =
+              "url(./assets/tablet/bg-image-nighttime.jpg)";
+          } else {
+            document.getElementById("main").style.backgroundImage =
+              "url(./assets/desktop/bg-image-nighttime.jpg)";
+          }
         }
       });
   });
