@@ -6,10 +6,25 @@ var date = document.getElementById("date");
 var insideMain = document.getElementById("inside-main");
 var refresh = document.getElementById("refresh");
 
-refresh.addEventListener("click", function () {
-  location.reload();
-});
+// refresh.addEventListener("click", function () {
+//   location.reload();
+// });
 
+ refresh.addEventListener("click", function () {
+   callQuotes();
+ });
+
+callQuotes();
+function callQuotes() {
+  fetch("https://type.fit/api/quotes")
+  .then((response) => response.json())
+  .then((data) => {
+    document.getElementById("quote").innerHTML =
+      data[Math.floor(Math.random() * 500 + 1)].text;
+    document.getElementById("author").innerHTML =
+      data[Math.floor(Math.random() * 500 + 1)].author;
+  });
+}
 btnMore.addEventListener("click", function () {
   btnLess.style.display = "block";
   btnMore.style.display = "none";
@@ -28,14 +43,7 @@ btnLess.addEventListener("click", function () {
   btnMore.style.top = "65%";
 });
 
-fetch("https://type.fit/api/quotes")
-  .then((response) => response.json())
-  .then((data) => {
-    document.getElementById("quote").innerHTML +=
-      data[Math.floor(Math.random() * 500 + 1)].text;
-    document.getElementById("author").innerHTML +=
-      data[Math.floor(Math.random() * 500 + 1)].author;
-  });
+
 
 fetch("https://freegeoip.app/json/")
   .then((response) => response.json())
