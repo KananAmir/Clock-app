@@ -17,12 +17,13 @@ var refresh = document.getElementById("refresh");
 callQuotes();
 function callQuotes() {
   fetch("https://type.fit/api/quotes")
-  .then((response) => response.json())
-  .then((data) => {
+  .then(response => response.json())
+  .then(data => {
+    let random = Math.floor(Math.random() * 500 + 1);
     document.getElementById("quote").innerHTML =
-      data[Math.floor(Math.random() * 500 + 1)].text;
+      data[random].text;
     document.getElementById("author").innerHTML =
-      data[Math.floor(Math.random() * 500 + 1)].author;
+      data[random].author;
   });
 }
 btnMore.addEventListener("click", function () {
@@ -48,9 +49,7 @@ btnLess.addEventListener("click", function () {
 fetch("https://freegeoip.app/json/")
   .then((response) => response.json())
   .then((data) => {
-    document.getElementById(
-      "date-content-bottom"
-    ).innerHTML += `${data.city}, ${data.country_name}`;
+    document.getElementById("date-content-bottom").innerHTML += `${data.city}, ${data.country_name}`;
 
     let timeZone = data.time_zone;
     fetch(`http://worldtimeapi.org/api/timezone/${timeZone}.json`)
